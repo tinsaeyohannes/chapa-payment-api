@@ -1,7 +1,7 @@
 {
   "name": "media-server",
   "version": "1.265.0",
-  "description": "Minimal Media Server nodejs application, using typescript",
+  "description": "Chapa-Payment API nodejs application, using typescript",
   "main": "dist/src/server.js",
   "author": "",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
-    "morgan": "^1.10.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
