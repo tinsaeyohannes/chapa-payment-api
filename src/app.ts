@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import PaymentRouter from './routes/payment.routes';
 
 const app: Express = express();
 
@@ -31,5 +32,6 @@ app.use(
   }),
 );
 
+app.use('/api/v1', PaymentRouter);
 
 export default app;
