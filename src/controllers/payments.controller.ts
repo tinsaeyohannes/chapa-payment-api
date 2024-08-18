@@ -19,9 +19,9 @@ const acceptPayments = async (req: Request, res: Response) => {
       return res.status(500).json({ error });
     }
 
-    const { reference } = await response.json();
+    const data = await response.json();
 
-    res.status(200).json({ reference });
+    res.status(200).json(data);
   } catch (error) {
     console.error(error);
     res.status(500).json('Internal server error');
