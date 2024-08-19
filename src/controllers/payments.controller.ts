@@ -1,6 +1,37 @@
 import type { Request, Response } from 'express';
 
 const acceptPayments = async (req: Request, res: Response) => {
+  const {
+    amount,
+    currency,
+    email,
+    first_name,
+    last_name,
+    tx_ref,
+  }: {
+    amount: string;
+    currency: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    tx_ref: string;
+  } = req.body;
+
+  if (!amount || currency || email || !first_name || !last_name || !tx_ref) {
+    res.status(400).json('All fields are required!');
+    return;
+  }
+
+  const reqData = {
+    amount,
+    currency,
+    email,
+    first_name,
+    last_name,
+    callback_url: CALLBACK_URL,
+    return_url: RETURN_URL,
+  };
+
   try {
     const response = await fetch(
       'https://api.chapa.co/v1/transaction/initialize',
