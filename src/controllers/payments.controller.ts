@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+const { CALLBACK_URL, RETURN_URL } = process.env;
 
 const acceptPayments = async (req: Request, res: Response) => {
   const {
@@ -41,7 +42,7 @@ const acceptPayments = async (req: Request, res: Response) => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${process.env.CHAPA_SECRET_KEY}`,
         },
-        body: JSON.stringify(req.body),
+        body: JSON.stringify(reqData),
       },
     );
 
@@ -49,10 +50,11 @@ const acceptPayments = async (req: Request, res: Response) => {
       const { error } = await response.json();
       return res.status(500).json({ error });
     }
-
     const data = await response.json();
 
-    res.status(200).json(data);
+    console.log('data=', data);
+
+    res.redirect(data.checkout_url);
   } catch (error) {
     console.error(error);
     res.status(500).json('Internal server error');
