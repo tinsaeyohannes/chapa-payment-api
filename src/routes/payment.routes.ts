@@ -3,6 +3,6 @@ import { Router } from 'express';
 
 const PaymentRouter = Router();
 
-PaymentRouter.post('/acceptPayment', acceptPayments);
+PaymentRouter.post('/pay', acceptPayments);
 
 export default PaymentRouter;
