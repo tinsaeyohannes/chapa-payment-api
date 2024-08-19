@@ -32,6 +32,6 @@ app.use(
   }),
 );
 
-app.use('/api/v1', PaymentRouter);
+app.use('/api', PaymentRouter);
 
 export default app;
