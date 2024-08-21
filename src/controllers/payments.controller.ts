@@ -61,4 +61,32 @@ const acceptPayments = async (req: Request, res: Response) => {
   }
 };
 
-export { acceptPayments };
+const verifyPayments = async (req: Request, res: Response) => {
+  try {
+    const response = await fetch(
+      `https://api.chapa.co/v1/transaction/verify/${req.params.id}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.CHAPA_SECRET_KEY}`,
+        },
+      },
+    );
+
+    if (!response.ok) {
+      const { error } = await response.json();
+      return res.status(500).json({ error });
+    }
+    const data = await response.json();
+
+    res
+      .status(200)
+      .json({ message: 'Payment was successfully verified', data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Payment can't be verfied", error });
+  }
+};
+
+export { acceptPayments, verifyPayments };
