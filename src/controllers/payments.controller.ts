@@ -23,12 +23,16 @@ const acceptPayments = async (req: Request, res: Response) => {
     return;
   }
 
+  // a unique reference given to every transaction
+  const TEXT_REF = 'tx-myecommerce12345-' + Date.now();
+
   const reqData = {
     amount,
     currency,
     email,
     first_name,
     last_name,
+    tx_ref: TEXT_REF,
     callback_url: CALLBACK_URL,
     return_url: RETURN_URL,
   };
