@@ -32,6 +32,13 @@ app.use(
   }),
 );
 
+app.set('view engine', 'ejs');
+
+// entry for the front end
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
 app.use('/api', PaymentRouter);
 
 export default app;
