@@ -39,6 +39,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/api/payment-success', async (req, res) => {
+  res.render('success');
+});
+
 app.use('/api', PaymentRouter);
 
 export default app;
